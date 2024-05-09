@@ -5,6 +5,7 @@ import (
 )
 
 func main() {
+	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 
 	router.POST("/echo", func(c *gin.Context) {
@@ -18,5 +19,6 @@ func main() {
 		c.JSON(200, gin.H{"message": message})
 	})
 
-	router.Run(":8080")
+	router.SetTrustedProxies([]string{"127.0.0.1"})
+	router.Run(":8889")
 }
